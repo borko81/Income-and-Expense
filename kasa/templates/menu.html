@@ -1,0 +1,15 @@
+<div class="main_list">
+    <ul>
+        <li><a href="#">Конфигурация</a></li>
+        <ul>
+            <li><a href="{% url 'income_expense:checkout_show' %}">Каси</a></li>
+            <li><a href="{% url 'income_expense:types_show' %}">Типове</a></li>
+        </ul>
+        <li><a href="#">Деиствия</a></li>
+        <ul>
+            <li><a href="{% url 'income_expense:action_show' %}">Покажи движение</a></li>
+            <li><a href="{% url 'income_expense:action_new' %}">Ново действие</a></li>
+        </ul>
+        <li><a href="{% url 'user_profile:profile' %}">Профил</a></li>
+    </ul>
+</div>

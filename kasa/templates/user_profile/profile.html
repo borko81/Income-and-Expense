@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}   
+<h2>Welcome {{request.user.username}} to profile page</h2>
+<div class="card">
+    <div class="show">
+        <h3 class="card_field">{{user_profile.username}}</h3> 
+        <p class="card_field">{{user_profile.telephone}}</p>
+        <p class="card_field">{{user_profile.town}}</p>
+        <p class="card_field">{{user_profile.description}}</p>
+        <small>
+            <a href="{% url 'user_profile:profile' %}?edit=1">Edit</a>
+            <a href="{% url 'user_profile:delete' user.id %}">Delete</a>
+        </small>
+    </div>
+    {% if form %}
+    <div class="edit">
+        <form method="POST">
+            {% csrf_token %}
+            {% for f in form %}
+            <div class="form_label_and_subject">
+                {{f.label}}
+                {{f}}
+            </div>
+            {% endfor %}
+            <input type="submit" value="Edit">
+        </form>
+    </div>
+    {% endif %}
+</div>        
+{% endblock body %}

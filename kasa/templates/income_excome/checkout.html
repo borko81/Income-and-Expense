@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+{% if messages %}
+    {% for message in messages %}
+        <p class="{{message.tags}}">{{message}}</p>
+    {% endfor %}
+{% endif %}
+<div class="card">
+    <div class="show">
+    <h3>Show all checkout |<small><a href="{% url 'income_expense:checkout_new' %}">Create new</a></small></h3>
+    {% if result %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Suma</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for line in result %}
+            <tr>
+                <td>{{line.name}}</td>
+                <td>{{line.description|default_if_none:"---"}}</td>
+                <td>{{line.suma}}</td>
+                <td><a href="{% url 'income_expense:checkout_show' %}?id_={{line.id}}" class="success">Edit</a></td>
+                <td><a href="{% url 'income_expense:checkout_show' %}?delete=1&id_={{line.id}}" class="error">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    {% else %}
+        <p>Not configurated checkout yet</p>
+    {% endif %}
+    </div>
+    <div class="edit">
+        {% if form %}
+        <h3>Create</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {% for f in form %}
+            <div class="form_label_and_subject">
+                {{f.label}}
+                {{f}}
+            </div>
+            {% endfor %}
+            <input type="submit" value="SaveEdit">
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}

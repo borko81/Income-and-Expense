@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+{% if messages %}
+    {% for message in messages %}
+        <p class="{{message.tags}}">{{message}}</p>
+    {% endfor %}
+{% endif %}
+<div class="center_form">
+<h3>Create new action</h3>
+<form method="POST">
+    {% csrf_token %}
+    <ul class="wrapper">
+        {% for field in form %}
+            <li class="form-row">
+                <label for="">{{field.label}}</label>
+                {{field}}
+            </li>
+        {% endfor %}
+        <li class="form-row">
+            <input type="submit" value="Save">
+        </li>
+    </ul>
+</form>
+</div>
+{% block script_bottom %}
+<script>
+
+</script>
+{% endblock script_bottom %}
+{% endblock body %}

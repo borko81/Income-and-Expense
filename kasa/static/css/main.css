@@ -1,0 +1,215 @@
+body {
+    background-color: blanchedalmond;
+}
+
+.custom_a {
+    text-decoration: underline;
+    color: black;
+    cursor: pointer;
+}
+/* messages style */
+.error {
+    color: red;
+}
+.success {
+    color: green;
+}
+/* end messages style */
+
+.container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 10% 90%;
+    grid-template-areas: 'menu head' 'menu main' 'menu footer';
+}
+
+.content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container > .menu {
+    grid-area: menu;
+}
+
+.main_list > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main_list li {
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+
+.main_list  a {
+    text-decoration: none;
+    color: black;
+}   
+
+
+.container > .head {
+    grid-area: head;
+    position: sticky;
+    top: 0;
+    height: 50px;
+    background-color: black;
+    color: white;
+}
+
+.container > .main {
+    grid-area: main;
+    height: 100vh;
+}
+
+.container > .footer {
+    height: 50px;
+    position: sticky;
+    bottom: 0;
+    grid-area: footer;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+/* header logo and menu */
+.logoandmenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signinout {
+    padding-right: 15px;
+}
+
+.logoandmenu h3 {
+    text-transform: uppercase;
+}
+
+.signinout a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+}
+/* end header logo and menu */
+
+/* profile css */
+.card {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+.form_label_and_subject {
+    display: flex;
+    flex-direction: column;
+}
+/* end profile css*/
+
+/* table css*/
+.table {
+    width:500px;
+    margin-top: 10px;
+}
+
+.table > thead {
+    background: black;
+    color: white;
+}
+.table, th, td {
+    text-align: left;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table_full {
+    width:100%;
+    margin-top: 10px;
+}
+
+.table_full > thead {
+    background: black;
+    color: white;
+}
+.table_full, th, td {
+    text-align: left;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+/* end table css/*
+
+/* cryteria show css */
+.criteria_show ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.criteria_show ul li {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.criteria_show ul li a{
+    text-decoration: none;
+    color: black;   
+}
+
+.criteria_show ul li a::after{
+    content: " > " 
+}
+
+.criteria_show ul li a::before{
+    content: " < " 
+}
+/* end */
+.center_form {
+    width: 50%;
+    margin: 10px auto;
+}
+.wrapper {
+    background-color: whitesmoke;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 3px;
+}
+.form-row {
+    display: flex;
+    justify-content: flex-end;
+}
+.form-row > input {
+    flex: 2
+}
+.form-row > select {
+    flex: 2
+}
+.form-row > label {
+    flex: 1;
+}
+.form-row > input,
+.form-row > select,
+.form-row > button {
+    padding: .5em;
+    margin-bottom: 5px;
+}
+.form-row > input[type="submit"] {
+    background: gray;
+    color: white;
+    border: 0;
+    margin-bottom: 0;
+}
+
+/* media css */
+@media only screen and (max-width: 600px) {
+    .card {
+        display: flex;
+        flex-direction: column;
+    }
+    .edit {
+        order: 1;
+    }
+    .show {
+        order: 2;
+    }
+}

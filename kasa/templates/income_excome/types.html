@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+{% if messages %}
+    {% for message in messages %}
+        <p class="{{message.tags}}">{{message}}</p>
+    {% endfor %}
+{% endif %}
+<br>
+<a href="{% url 'income_expense:types_show' %}?new_record=new" class="custom_a">New Record</a>
+<br>
+{% if not types %}
+    <h3>Not records yet</h3>
+{% else %}
+    <div class="card">
+    <div class="show">
+    <div class="criteria_show">
+        <ul>
+            <li><a href="{% url 'income_expense:types_show' %}">All</a></li>
+            {% for t1, t2 in vid_types %}
+                <li><a href="{% url 'income_expense:types_show' %}?type={{t1}}">{{t1}}</a></li>
+            {% endfor %}
+        </ul>     
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>IsModify</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type in types %}
+            <tr>
+                <td>{{type.name}}</td>
+                <td>{{type.description}}</td>
+                <td>{{type.type_name}}</td>
+                {% if type.date_updated %}
+                    <td style="text-align: center;">+</td>
+                {% else %}
+                    <td style="text-align: center;">-</td>
+                {% endif %}
+                <td><a href="{% url 'income_expense:types_show' %}?edit={{type.id}}" class="success">Edit</a></td>
+                <td>
+                    <a href="{% url 'income_expense:types_show' %}?delete={{type.id}}" 
+                    class="error" 
+                    onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};">
+                    Del
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="edit">
+        {% if form %}
+        <h3>Create</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {% for f in form %}
+            <div class="form_label_and_subject">
+                {{f.label}}
+                {{f}}
+            </div>
+            {% endfor %}
+            <input type="submit" value="SaveEdit">
+        </form>
+        {% endif %}
+    </div>
+    </div>
+{% endif %}
+
+{% endblock body %}

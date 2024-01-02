@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %} 
+{% if messages %}
+    {% for message in messages %}
+        <p class="{{message.tags}}">{{message}}</p>
+    {% endfor %}
+{% endif %}
+<h3>Show Action's</h3>
+<a href="{% url 'income_expense:result_in_excell' %}" class="custom_a">Download Excell</a>
+
+<table class="table_full">
+    <thead>
+        <tr>
+            <th>FromKasa</th>
+            <th>ToKasa</th>
+            <th>Type</th>
+            <th>Suma</th>
+            <th>Description</th>
+            <th>DateTime</th>
+            <th colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for action in actions %}
+        <tr>
+            <td>{{action.from_user}}</td>
+            <td>{{action.to_user|default_if_none:''}}</td>
+            <td>{{action.type_action}}</td>
+            <td>{{action.suma}}</td>
+            <td>{{action.description|default_if_none:''}}</td>
+            <td>{{action.date_created|date:'Y-m-d H:i'}}</td>
+            <td class="success">Edit</td>
+            <td class="error">Delete</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
